@@ -135,6 +135,35 @@ public class CustomerManageMainFormController implements Initializable {
     }
 
     public void searchCustomerOnAction(ActionEvent actionEvent) {
+
+        String searchId = cusId.getText();
+
+        if (!searchId.isEmpty()) {
+            try {
+                // Search in the database
+                Connection connection = DBConnection.getInstance().getConnection();
+                PreparedStatement preparedStatement = connection.prepareStatement(
+                        "SELECT * FROM customer WHERE id = ?"
+                );
+                preparedStatement.setString(1, searchId);
+
+                ResultSet resultSet = preparedStatement.executeQuery();
+
+                if (resultSet.next()) {
+                    // Display values in text fields
+                    cusName.setText(resultSet.getString("name"));
+                    cusAddress.setText(resultSet.getString("address"));
+                    cusSalary.setText(String.valueOf(resultSet.getDouble("salary")));
+                } else {
+                    System.out.println("No customer found with ID: " + searchId);
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+
+
     }
 
     private void loadTable() throws SQLException {
