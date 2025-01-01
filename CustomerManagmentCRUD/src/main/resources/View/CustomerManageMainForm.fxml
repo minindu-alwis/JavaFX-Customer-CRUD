@@ -26,7 +26,7 @@
       <Label layoutX="31.0" layoutY="141.0" text="Customer Address :" />
       <Label layoutX="324.0" layoutY="103.0" text="Customer Name :" />
       <Label layoutX="324.0" layoutY="141.0" text="Customer Salary :" />
-      <Button layoutX="529.0" layoutY="176.0" mnemonicParsing="false" onAction="#addCustomerOnAction" style="-fx-background-color: #95a5a6;" text="View" />
+      <Button layoutX="529.0" layoutY="176.0" mnemonicParsing="false" onAction="#viewCustomerOnAction" style="-fx-background-color: #95a5a6;" text="View" />
       <Button layoutX="480.0" layoutY="176.0" mnemonicParsing="false" onAction="#addaCustomerOnAction" style="-fx-background-color: #af7ac5;" text="Add" />
       <TableView fx:id="tblCustomer" layoutX="21.0" layoutY="215.0" prefHeight="174.0" prefWidth="558.0" stylesheets="@../CSS/style.css">
          <columns>
