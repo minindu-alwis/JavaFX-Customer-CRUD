@@ -2,6 +2,7 @@ package Controllers.Customer;
 
 import DB.DBConnection;
 import Models.Customer;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -30,19 +31,28 @@ public class CustomerManageMainFormController implements Initializable {
 
 
     public void addaCustomerOnAction(ActionEvent actionEvent) throws SQLException {
+
         try {
-            if (CustomerController.getInstance().saveCustomer(new Customer(cusId.getText(), cusName.getText(), cusAddress.getText(), Double.parseDouble(cusSalary.getText())))) {
-                new Alert(Alert.AlertType.INFORMATION, "Customer Added Successful").show();
+            if (CustomerController.getInstance().updateCustomer(
+                    new Customer(
+                            cusId.getText(),
+                            cusName.getText(),
+                            cusAddress.getText(),
+                            Double.parseDouble(cusSalary.getText())
+                    )
+            )) {
+                new Alert(Alert.AlertType.INFORMATION, "Customer Updated Successfully").show();
                 cusId.clear();
                 cusName.clear();
                 cusAddress.clear();
                 cusSalary.clear();
             } else {
-                new Alert(Alert.AlertType.INFORMATION, "Customer Added Failed").show();
+                new Alert(Alert.AlertType.INFORMATION, "Customer Update Failed").show();
             }
         } catch (NumberFormatException e) {
-            new Alert(Alert.AlertType.WARNING, "Please Fill the All Empty TEXT Fields..").show();
+            new Alert(Alert.AlertType.WARNING, "Please Fill All Empty TEXT Fields.").show();
         }
+
 
     }
 
@@ -75,7 +85,12 @@ public class CustomerManageMainFormController implements Initializable {
 
     public void searchCustomerOnAction(ActionEvent actionEvent) {
 
+
+
         Customer customer = CustomerController.getInstance().searchCustomer(cusId.getText());
+        if(customer==null){
+            new Alert(Alert.AlertType.INFORMATION, "Customer Not Found").show();
+        }
         cusName.setText(customer.getName());
         cusAddress.setText(customer.getAddress());
         cusSalary.setText(String.valueOf(customer.getSalary()));
@@ -83,23 +98,21 @@ public class CustomerManageMainFormController implements Initializable {
     }
 
     private void loadTable() throws SQLException {
-        ObservableList<Customer> customerObservableList = FXCollections.observableArrayList();
-        for (Customer customer : CustomerController.getInstance().getAll()) {
-            customerObservableList.add(customer);
-        }
+        ObservableList<Customer> customerObservableList = FXCollections.observableArrayList(CustomerController.getInstance().getAll());
         tblCustomer.setItems(customerObservableList);
     }
 
     @SneakyThrows
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
         cusIdCol.setCellValueFactory(new PropertyValueFactory<>("id"));
         cusNameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
         cusAddressCol.setCellValueFactory(new PropertyValueFactory<>("address"));
         cusSalaryCol.setCellValueFactory(new PropertyValueFactory<>("salary"));
-
-        generateCusId();
         loadTable();
+        generateCusId();
+
 
         // get selected row in table
         tblCustomer.getSelectionModel().selectedItemProperty().addListener((observableValue, oldValue, newValue) -> {
@@ -117,7 +130,8 @@ public class CustomerManageMainFormController implements Initializable {
     }
 
     public void viewCustomerOnAction(ActionEvent actionEvent) throws SQLException {
-
+        loadTable();
+        new Alert(Alert.AlertType.INFORMATION, "Customer data loaded successfully!").show();
     }
 
 
@@ -127,9 +141,5 @@ public class CustomerManageMainFormController implements Initializable {
         String newId = String.format("C%03d", id + 1);
         cusId.setText(newId);
     }
-
-
-
-
 
 }

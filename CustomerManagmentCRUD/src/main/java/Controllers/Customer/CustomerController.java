@@ -23,16 +23,17 @@ public class CustomerController implements CustomerService{
 
     @Override
     public List<Customer> getAll() {
-        List<Customer> customerList=new ArrayList<>();
+        List<Customer> customerList = new ArrayList<>();
         try {
             ResultSet rst = DBConnection.getInstance().getConnection().createStatement().executeQuery("Select * from Customer");
             while (rst.next()) {
                 customerList.add(new Customer(rst.getString(1), rst.getString(2), rst.getString(3), rst.getDouble(4)));
             }
-            return customerList;
-        }catch (SQLException e){
-           throw new RuntimeException();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Error fetching customers from database", e);
         }
+        return customerList;
     }
 
     @Override
