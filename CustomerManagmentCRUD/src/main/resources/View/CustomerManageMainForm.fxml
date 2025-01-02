@@ -10,7 +10,7 @@
 <?import javafx.scene.text.Font?>
 
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #f5b7b1;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.CustomerManageMainFormController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #f5b7b1;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Customer.CustomerManageMainFormController">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" height="72.0" stroke="BLACK" strokeType="INSIDE" width="600.0" />
       <Label layoutX="217.0" layoutY="23.0" text="Customer Managment" textFill="WHITE">
