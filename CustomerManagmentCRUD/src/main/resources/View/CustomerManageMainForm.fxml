@@ -9,8 +9,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #f5b7b1;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Customer.CustomerManageMainFormController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: FFF574;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Customer.CustomerManageMainFormController">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" height="72.0" stroke="BLACK" strokeType="INSIDE" width="600.0" />
       <Label layoutX="217.0" layoutY="23.0" text="Customer Managment" textFill="WHITE">
@@ -38,6 +37,6 @@
       </TableView>
       <Button layoutX="420.0" layoutY="176.0" mnemonicParsing="false" onAction="#deleteCustomerOnAction" style="-fx-background-color: #e74c3c;" text="Delete" />
       <Button layoutX="358.0" layoutY="176.0" mnemonicParsing="false" onAction="#updateCustomerOnAction" style="-fx-background-color: #1abc9c;" text="Update" />
-      <Button layoutX="294.0" layoutY="176.0" mnemonicParsing="false" onAction="#searchCustomerOnAction" style="-fx-background-color: #f1c40f;" text="Search" />
+      <Button layoutX="294.0" layoutY="176.0" mnemonicParsing="false" onAction="#searchCustomerOnAction" style="-fx-background-color: #08C2FF;" text="Search" />
    </children>
 </AnchorPane>
