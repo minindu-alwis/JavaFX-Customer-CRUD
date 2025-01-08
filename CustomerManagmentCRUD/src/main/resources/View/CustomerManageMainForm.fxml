@@ -38,5 +38,6 @@
       <Button layoutX="420.0" layoutY="176.0" mnemonicParsing="false" onAction="#deleteCustomerOnAction" style="-fx-background-color: #e74c3c;" text="Delete" />
       <Button layoutX="358.0" layoutY="176.0" mnemonicParsing="false" onAction="#updateCustomerOnAction" style="-fx-background-color: FF9800;" text="Update" />
       <Button layoutX="294.0" layoutY="176.0" mnemonicParsing="false" onAction="#searchCustomerOnAction" style="-fx-background-color: #08C2FF;" text="Search" />
+      <Button layoutX="21.0" layoutY="176.0" mnemonicParsing="false" onAction="#btnItemOnAction" text="Item CRUD" />
    </children>
 </AnchorPane>
