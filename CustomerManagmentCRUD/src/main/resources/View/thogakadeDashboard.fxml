@@ -1,14 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="View.ThogakadeDashboard"
-            prefHeight="400.0" prefWidth="600.0">
 
+<AnchorPane prefHeight="505.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Dashboard.togakadeDashboardFormController">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="67.0" stroke="BLACK" strokeType="INSIDE" width="600.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" height="46.0" layoutY="67.0" stroke="BLACK" strokeType="INSIDE" width="600.0" />
+      <Button layoutX="73.0" layoutY="78.0" mnemonicParsing="false" onAction="#btnCustomerOnAction" text="Customer" />
+      <Button layoutX="266.0" layoutY="77.0" mnemonicParsing="false" onAction="#btnItemFormOnAction" prefHeight="26.0" prefWidth="74.0" text="Item" />
+      <Button layoutX="474.0" layoutY="77.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="74.0" text="Order" />
+      <Label layoutX="206.0" layoutY="14.0" text="TogaKade DashBoard">
+         <font>
+            <Font name="Viner Hand ITC" size="19.0" />
+         </font>
+      </Label>
+      <AnchorPane fx:id="dashboardAncorPane" layoutY="113.0" prefHeight="391.0" prefWidth="600.0" style="-fx-background-color: green;" />
+   </children>
 </AnchorPane>
