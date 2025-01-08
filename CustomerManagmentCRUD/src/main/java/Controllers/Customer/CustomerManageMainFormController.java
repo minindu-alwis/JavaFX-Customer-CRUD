@@ -35,29 +35,37 @@ public class CustomerManageMainFormController implements Initializable {
 
 
     public void addaCustomerOnAction(ActionEvent actionEvent) throws SQLException {
-
         try {
-            if (CustomerController.getInstance().updateCustomer(
+            // Input validation
+            if (cusName.getText().isEmpty() || cusAddress.getText().isEmpty() || cusSalary.getText().isEmpty()) {
+                new Alert(Alert.AlertType.WARNING, "Please Fill All Empty TEXT Fields.").show();
+                return;
+            }
+
+            // Save the customer
+            boolean isSaved = CustomerController.getInstance().saveCustomer(
                     new Customer(
                             cusId.getText(),
                             cusName.getText(),
                             cusAddress.getText(),
                             Double.parseDouble(cusSalary.getText())
                     )
-            )) {
-                new Alert(Alert.AlertType.INFORMATION, "Customer Updated Successfully").show();
-                cusId.clear();
+            );
+
+            // Show success or failure message
+            if (isSaved) {
+                new Alert(Alert.AlertType.INFORMATION, "Customer Added Successfully").show();
+                loadTable(); // Refresh table data
+                generateCusId(); // Generate a new customer ID
                 cusName.clear();
                 cusAddress.clear();
                 cusSalary.clear();
             } else {
-                new Alert(Alert.AlertType.INFORMATION, "Customer Update Failed").show();
+                new Alert(Alert.AlertType.ERROR, "Customer Addition Failed").show();
             }
         } catch (NumberFormatException e) {
-            new Alert(Alert.AlertType.WARNING, "Please Fill All Empty TEXT Fields.").show();
+            new Alert(Alert.AlertType.WARNING, "Invalid Salary Input. Please Enter a Valid Number.").show();
         }
-
-
     }
 
     public void deleteCustomerOnAction(ActionEvent actionEvent) {

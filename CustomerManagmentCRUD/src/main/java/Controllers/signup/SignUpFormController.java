@@ -11,6 +11,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import org.jasypt.util.text.BasicTextEncryptor;
 
 
 import java.io.IOException;
@@ -26,6 +27,8 @@ public class SignUpFormController implements Initializable {
 
 
     public void btnSingUpOnAction(ActionEvent actionEvent) throws IOException {
+        String password=encryptPassword();
+
         boolean isRegistered = false;
         try {
             isRegistered = SignupController.getInstance().registerUser(
@@ -33,7 +36,7 @@ public class SignUpFormController implements Initializable {
                             userIdDisplay.getText(),
                             txtNewUserName.getText(),
                             txtEmail.getText(),
-                            txtNewUserPassword.getText()
+                            password
                     )
             );
         } catch (SQLException e) {
@@ -67,4 +70,15 @@ public class SignUpFormController implements Initializable {
         String id= SignupController.getInstance().generateuserId();
         userIdDisplay.setText(id);
     }
+
+    public String encryptPassword(){
+        String key="12345";
+        BasicTextEncryptor basicTextEncryptor=new BasicTextEncryptor();
+        String password=txtNewUserPassword.getText();
+
+        basicTextEncryptor.setPassword(key);
+        String encriptpassword=basicTextEncryptor.encrypt(password);
+        return encriptpassword;
+    }
+
 }

@@ -9,35 +9,47 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: C5D3E8;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Customer.CustomerManageMainFormController">
+<AnchorPane prefHeight="448.0" prefWidth="600.0" style="-fx-background-color: #F5F7FA;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Customer.CustomerManageMainFormController">
    <children>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#eb3678" height="72.0" stroke="BLACK" strokeType="INSIDE" width="600.0" />
-      <Label layoutX="217.0" layoutY="23.0" text="Customer Managment" textFill="WHITE">
+      <!-- Header -->
+      <Rectangle arcHeight="10.0" arcWidth="10.0" fill="#1976D2" height="72.0" width="600.0" />
+      <Label layoutX="180.0" layoutY="23.0" text="Customer Management" textFill="WHITE">
          <font>
-            <Font name="Happy Lucky" size="21.0" />
+            <Font name="Segoe UI Bold" size="24.0" />
          </font>
       </Label>
-      <TextField fx:id="cusId" layoutX="144.0" layoutY="99.0" promptText="Customer ID" />
-      <TextField fx:id="cusName" layoutX="420.0" layoutY="99.0" promptText="Customer Name" />
-      <TextField fx:id="cusAddress" layoutX="146.0" layoutY="137.0" promptText="Customer Address" />
-      <TextField fx:id="cusSalary" layoutX="420.0" layoutY="137.0" promptText="Customer Salary" />
-      <Label layoutX="32.0" layoutY="103.0" text="Customer ID :" />
-      <Label layoutX="31.0" layoutY="141.0" text="Customer Address :" />
-      <Label layoutX="324.0" layoutY="103.0" text="Customer Name :" />
-      <Label layoutX="324.0" layoutY="141.0" text="Customer Salary :" />
-      <Button layoutX="529.0" layoutY="176.0" mnemonicParsing="false" onAction="#viewCustomerOnAction" style="-fx-background-color: #95a5a6;" text="View" />
-      <Button layoutX="480.0" layoutY="176.0" mnemonicParsing="false" onAction="#addaCustomerOnAction" style="-fx-background-color: #af7ac5;" text="Add" />
-      <TableView fx:id="tblCustomer" layoutX="21.0" layoutY="215.0" prefHeight="174.0" prefWidth="558.0" stylesheets="@../CSS/style.css">
+
+      <!-- Input Fields -->
+      <TextField fx:id="cusId" layoutX="141.0" layoutY="99.0" promptText="Customer ID" style="-fx-background-color: #FFFFFF; -fx-border-color: #DADADA;" />
+      <TextField fx:id="cusName" layoutX="434.0" layoutY="99.0" promptText="Customer Name" style="-fx-background-color: #FFFFFF; -fx-border-color: #DADADA;" />
+      <TextField fx:id="cusAddress" layoutX="140.0" layoutY="137.0" promptText="Customer Address" style="-fx-background-color: #FFFFFF; -fx-border-color: #DADADA;" />
+      <TextField fx:id="cusSalary" layoutX="434.0" layoutY="136.0" promptText="Customer Salary" style="-fx-background-color: #FFFFFF; -fx-border-color: #DADADA;" />
+
+      <!-- Labels -->
+      <Label layoutX="16.0" layoutY="103.0" style="-fx-font-family: 'Segoe UI'; -fx-font-size: 14; -fx-text-fill: #333333;" text="Customer ID:">
+         <font>
+            <Font size="8.0" />
+         </font></Label>
+      <Label layoutX="15.0" layoutY="141.0" style="-fx-font-family: 'Segoe UI'; -fx-font-size: 14; -fx-text-fill: #333333;" text="Customer Address:" />
+      <Label layoutX="312.0" layoutY="103.0" style="-fx-font-family: 'Segoe UI'; -fx-font-size: 14; -fx-text-fill: #333333;" text="Customer Name:" />
+      <Label layoutX="312.0" layoutY="141.0" style="-fx-font-family: 'Segoe UI'; -fx-font-size: 14; -fx-text-fill: #333333;" text="Customer Salary:" />
+
+      <!-- Buttons -->
+      <Button layoutX="525.0" layoutY="176.0" mnemonicParsing="false" onAction="#viewCustomerOnAction" style="-fx-background-color: #3498DB; -fx-text-fill: white; -fx-font-size: 14;" text="View" />
+      <Button layoutX="476.0" layoutY="176.0" mnemonicParsing="false" onAction="#addaCustomerOnAction" style="-fx-background-color: #2ECC71; -fx-text-fill: white; -fx-font-size: 14;" text="Add" />
+      <Button layoutX="412.0" layoutY="176.0" mnemonicParsing="false" onAction="#deleteCustomerOnAction" style="-fx-background-color: #E74C3C; -fx-text-fill: white; -fx-font-size: 14;" text="Delete" />
+      <Button layoutX="343.0" layoutY="176.0" mnemonicParsing="false" onAction="#updateCustomerOnAction" style="-fx-background-color: #F39C12; -fx-text-fill: white; -fx-font-size: 14;" text="Update" />
+      <Button layoutX="278.0" layoutY="176.0" mnemonicParsing="false" onAction="#searchCustomerOnAction" style="-fx-background-color: #1ABC9C; -fx-text-fill: white; -fx-font-size: 14;" text="Search" />
+      <Button layoutX="21.0" layoutY="176.0" mnemonicParsing="false" onAction="#btnItemOnAction" style="-fx-background-color: #9B59B6; -fx-text-fill: white; -fx-font-size: 14;" text="Item CRUD" />
+
+      <!-- Table View -->
+      <TableView fx:id="tblCustomer" layoutX="21.0" layoutY="215.0" prefHeight="200.0" prefWidth="558.0" style="-fx-background-color: white; -fx-border-color: #DADADA;">
          <columns>
-            <TableColumn fx:id="cusIdCol" prefWidth="127.20001220703125" text="Customer ID" />
-            <TableColumn fx:id="cusNameCol" prefWidth="152.0" text="Customer Name" />
-            <TableColumn fx:id="cusAddressCol" prefWidth="129.5999755859375" text="Cusrtomer Address" />
-            <TableColumn fx:id="cusSalaryCol" prefWidth="148.0000061035156" text="Customer Salary" />
+            <TableColumn fx:id="cusIdCol" prefWidth="120.0" text="Customer ID" />
+            <TableColumn fx:id="cusNameCol" prefWidth="150.0" text="Customer Name" />
+            <TableColumn fx:id="cusAddressCol" prefWidth="150.0" text="Customer Address" />
+            <TableColumn fx:id="cusSalaryCol" prefWidth="130.0" text="Customer Salary" />
          </columns>
       </TableView>
-      <Button layoutX="420.0" layoutY="176.0" mnemonicParsing="false" onAction="#deleteCustomerOnAction" style="-fx-background-color: #e74c3c;" text="Delete" />
-      <Button layoutX="358.0" layoutY="176.0" mnemonicParsing="false" onAction="#updateCustomerOnAction" style="-fx-background-color: FF9800;" text="Update" />
-      <Button layoutX="294.0" layoutY="176.0" mnemonicParsing="false" onAction="#searchCustomerOnAction" style="-fx-background-color: #08C2FF;" text="Search" />
-      <Button layoutX="21.0" layoutY="176.0" mnemonicParsing="false" onAction="#btnItemOnAction" text="Item CRUD" />
    </children>
 </AnchorPane>

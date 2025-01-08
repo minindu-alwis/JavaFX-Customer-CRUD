@@ -2,23 +2,44 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.shape.Rectangle?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 
-
-<AnchorPane prefHeight="505.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Dashboard.togakadeDashboardFormController">
+<AnchorPane prefHeight="458.0" prefWidth="800.0" style="-fx-background-color: #FAFBFD;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Dashboard.togakadeDashboardFormController">
    <children>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="67.0" stroke="BLACK" strokeType="INSIDE" width="600.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" height="46.0" layoutY="67.0" stroke="BLACK" strokeType="INSIDE" width="600.0" />
-      <Button layoutX="73.0" layoutY="78.0" mnemonicParsing="false" onAction="#btnCustomerOnAction" text="Customer" />
-      <Button layoutX="266.0" layoutY="77.0" mnemonicParsing="false" onAction="#btnItemFormOnAction" prefHeight="26.0" prefWidth="74.0" text="Item" />
-      <Button layoutX="474.0" layoutY="77.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="74.0" text="Order" />
-      <Label layoutX="206.0" layoutY="14.0" text="TogaKade DashBoard">
-         <font>
-            <Font name="Viner Hand ITC" size="19.0" />
-         </font>
-      </Label>
-      <AnchorPane fx:id="dashboardAncorPane" layoutY="113.0" prefHeight="391.0" prefWidth="600.0" style="-fx-background-color: green;" />
+      <!-- Header -->
+      <HBox prefHeight="70.0" prefWidth="800.0" style="-fx-background-color: #1976D2; -fx-padding: 0 20; -fx-alignment: center-left;">
+         <children>
+            <Label style="-fx-font-size: 22; -fx-font-family: 'Segoe UI Semibold';" text="TogaKade Dashboard" textFill="white" />
+            <ImageView fitHeight="47.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/icons8-user-100.png" />
+               </image>
+            </ImageView>
+         </children>
+      </HBox>
+
+      <!-- Side Navigation Panel -->
+      <VBox layoutY="70.0" prefHeight="435.0" prefWidth="200.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #E0E0E0; -fx-border-width: 1 1 1 0; -fx-padding: 20 0;">
+         <children>
+            <Button onAction="#btnCustomerOnAction" style="-fx-background-color: transparent; -fx-text-fill: #1976D2; -fx-font-size: 16; -fx-font-family: 'Segoe UI Semibold'; -fx-border-color: transparent; -fx-padding: 15 20; -fx-alignment: center-left;" text="Customer" />
+            <Button onAction="#btnItemFormOnAction" style="-fx-background-color: transparent; -fx-text-fill: #1976D2; -fx-font-size: 16; -fx-font-family: 'Segoe UI Semibold'; -fx-border-color: transparent; -fx-padding: 15 20; -fx-alignment: center-left;" text="Item" />
+            <Button style="-fx-background-color: transparent; -fx-text-fill: #1976D2; -fx-font-size: 16; -fx-font-family: 'Segoe UI Semibold'; -fx-border-color: transparent; -fx-padding: 15 20; -fx-alignment: center-left;" text="Order" />
+            <ImageView fitHeight="220.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/icons8-cart-100.png" />
+               </image>
+            </ImageView>
+         </children>
+      </VBox>
+
+      <!-- Main Dashboard Area -->
+      <AnchorPane fx:id="dashboardAncorPane" layoutX="200.0" layoutY="70.0" prefHeight="435.0" prefWidth="600.0" style="-fx-background-color: #F9FBFC; -fx-border-color: #E0E0E0; -fx-border-width: 1;">
+         <Label layoutX="30.0" layoutY="30.0" style="-fx-font-size: 20; -fx-font-family: 'Segoe UI Semibold'; -fx-text-fill: #333333;" text="Welcome to the Dashboard!" />
+         <Label layoutX="30.0" layoutY="70.0" style="-fx-font-size: 16; -fx-font-family: 'Segoe UI'; -fx-text-fill: #555555;" text="Manage your customers, items, and orders with ease." />
+      </AnchorPane>
    </children>
 </AnchorPane>

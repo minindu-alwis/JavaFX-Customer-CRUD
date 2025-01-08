@@ -38,22 +38,24 @@ public class CustomerController implements CustomerService{
 
     @Override
     public boolean saveCustomer(Customer customer) throws SQLException {
-        Connection connection = DBConnection.getInstance().getConnection();
-
         String sql = "INSERT INTO customer (id, name, address, salary) VALUES (?, ?, ?, ?)";
-        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        try (Connection connection = DBConnection.getInstance().getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
 
-        preparedStatement.setString(1, customer.getId());
-        preparedStatement.setString(2, customer.getName());
-        preparedStatement.setString(3, customer.getAddress());
-        preparedStatement.setDouble(4, customer.getSalary());
+            // Set parameters
+            preparedStatement.setString(1, customer.getId());
+            preparedStatement.setString(2, customer.getName());
+            preparedStatement.setString(3, customer.getAddress());
+            preparedStatement.setDouble(4, customer.getSalary());
 
-        int result = preparedStatement.executeUpdate();
+            // Execute the query
+            int result = preparedStatement.executeUpdate();
+            return result > 0;
 
-        preparedStatement.close();
-        connection.close();
-
-        return result > 0;
+        } catch (SQLException e) {
+            e.printStackTrace(); // Log the exception
+            throw e; // Re-throw the exception for higher-level handling
+        }
     }
 
     @Override
