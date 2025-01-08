@@ -1,0 +1,67 @@
+/* Style for the background rectangle */
+.rectangle {
+    -fx-fill: #1E90FF; /* Dodger Blue */
+    -fx-stroke: black;
+    -fx-arc-height: 10;
+    -fx-arc-width: 10;
+}
+
+/* Style for the Labels */
+.label {
+    -fx-font-size: 14px;
+    -fx-font-family: "Arial";
+    -fx-text-fill: #2C2C2C; /* Dark gray */
+    -fx-font-weight: bold;
+}
+
+/* Style for the TextField */
+.text-field {
+    -fx-font-size: 14px;
+    -fx-font-family: "Arial";
+    -fx-background-color: #F5F5F5; /* Light gray */
+    -fx-border-color: #D3D3D3; /* Gray border */
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+    -fx-padding: 5 10;
+}
+
+/* Style for the PasswordField */
+.password-field {
+    -fx-font-size: 14px;
+    -fx-font-family: "Arial";
+    -fx-background-color: #F5F5F5; /* Light gray */
+    -fx-border-color: #D3D3D3; /* Gray border */
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+    -fx-padding: 5 10;
+}
+
+/* Style for the Buttons */
+.button {
+    -fx-font-size: 14px;
+    -fx-font-family: "Arial";
+    -fx-text-fill: white;
+    -fx-background-color: red; /* Dodger Blue */
+    -fx-background-radius: 20;
+    -fx-border-radius: 20;
+    -fx-padding: 5 20;
+    -fx-cursor: hand;
+}
+
+.button:hover {
+    -fx-background-color: #4682B4; /* Steel Blue */
+}
+
+.button:pressed {
+    -fx-background-color: #1C6EA4; /* Deeper blue */
+}
+
+/* Style for the ImageView */
+.image-view {
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.25), 5, 0.3, 2, 2);
+}
+
+/* Style for the AnchorPane */
+.anchor-pane {
+    -fx-background-color: #F0F8FF; /* Alice Blue */
+}
