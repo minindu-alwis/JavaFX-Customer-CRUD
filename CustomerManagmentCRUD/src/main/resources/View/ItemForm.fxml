@@ -13,10 +13,10 @@
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Item.ItemFromController">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#eb3678" height="72.0" stroke="BLACK" strokeType="INSIDE" width="600.0" />
-      <TextField fx:id="cusId" layoutX="154.0" layoutY="109.0" promptText="item id" />
-      <TextField fx:id="cusName" layoutX="430.0" layoutY="109.0" promptText="item name" />
-      <TextField fx:id="cusAddress" layoutX="156.0" layoutY="147.0" promptText="item price" />
-      <TextField fx:id="cusSalary" layoutX="430.0" layoutY="147.0" promptText="itemqty" />
+      <TextField fx:id="itemId" layoutX="154.0" layoutY="109.0" promptText="item id" />
+      <TextField fx:id="itemName" layoutX="430.0" layoutY="109.0" promptText="item name" />
+      <TextField fx:id="itemPrice" layoutX="156.0" layoutY="147.0" promptText="item price" />
+      <TextField fx:id="itemQty" layoutX="430.0" layoutY="147.0" promptText="itemqty" />
       <Label layoutX="42.0" layoutY="113.0" text="Item ID :" />
       <Label layoutX="41.0" layoutY="151.0" text="Item Price" />
       <Label layoutX="334.0" layoutY="113.0" text="Item Desc :" />

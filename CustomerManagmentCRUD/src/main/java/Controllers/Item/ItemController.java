@@ -5,6 +5,8 @@ import DB.DBConnection;
 import Models.Customer;
 import Models.Item;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -38,12 +40,27 @@ public class ItemController implements ItemService{
 
     @Override
     public boolean saveCustomer(Item item) throws SQLException {
-        return false;
+        Connection connection = DBConnection.getInstance().getConnection();
+
+        String sql = "INSERT INTO item (code, description, unitPrice, qtyOnHand) VALUES (?, ?, ?, ?)";
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+
+        preparedStatement.setString(1, item.getCode());
+        preparedStatement.setString(2, item.getDescription());
+        preparedStatement.setDouble(3, item.getUnitPrice());
+        preparedStatement.setInt(4, item.getQtyOnHand());
+
+        int result = preparedStatement.executeUpdate();
+
+        preparedStatement.close();
+        connection.close();
+
+        return result > 0;
     }
 
     @Override
-    public boolean updateCustomer(Item item) {
-        return false;
+    public boolean updateItem(Item item) throws SQLException {
+    return true;
     }
 
     @Override
@@ -55,4 +72,17 @@ public class ItemController implements ItemService{
     public Customer searchCustomer(String itemid) {
         return null;
     }
+
+    public String generateId(){
+        try {
+            ResultSet rst = DBConnection.getInstance().getConnection().createStatement().executeQuery("SELECT code FROM Item ORDER BY code DESC LIMIT 1");
+            if (rst.next()) {
+                return rst.getString("code");
+            }
+            return null;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 }

@@ -12,7 +12,7 @@ public interface ItemService {
 
     boolean saveCustomer(Item item) throws SQLException;
 
-    boolean updateCustomer(Item item);
+    boolean updateItem(Item item) throws SQLException;
 
     boolean deleteCustomer(String itemid);
 
