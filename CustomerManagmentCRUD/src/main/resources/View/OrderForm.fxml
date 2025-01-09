@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.order.OrderFormController">
+   <children>
+      <Label layoutX="243.0" layoutY="23.0" text="Order Form">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
+      <Label layoutX="47.0" layoutY="77.0" text="Date :" />
+      <Label layoutX="287.0" layoutY="79.0" text="Time : " />
+      <Label fx:id="nowTimeLbl" layoutX="331.0" layoutY="75.0" text="Now Time">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="nowDateLbl" layoutX="92.0" layoutY="77.0" text="Now Date" />
+   </children>
+</AnchorPane>

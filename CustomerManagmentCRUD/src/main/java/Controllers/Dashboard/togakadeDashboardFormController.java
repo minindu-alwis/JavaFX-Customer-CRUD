@@ -34,4 +34,19 @@ public class togakadeDashboardFormController {
             e.printStackTrace();
         }
     }
+
+
+    public void btnOrderFormAction(ActionEvent actionEvent) {
+
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/OrderForm.fxml"));
+            AnchorPane pane = loader.load();
+            dashboardAncorPane.getChildren().setAll(pane);
+        } catch (IOException e) {
+            new Alert(Alert.AlertType.ERROR, "Failed to load the Customer Manage Main Form: " + e.getMessage()).show();
+            e.printStackTrace();
+        }
+
+
+    }
 }

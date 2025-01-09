@@ -27,7 +27,7 @@
          <children>
             <Button onAction="#btnCustomerOnAction" style="-fx-background-color: transparent; -fx-text-fill: #1976D2; -fx-font-size: 16; -fx-font-family: 'Segoe UI Semibold'; -fx-border-color: transparent; -fx-padding: 15 20; -fx-alignment: center-left;" text="Customer" />
             <Button onAction="#btnItemFormOnAction" style="-fx-background-color: transparent; -fx-text-fill: #1976D2; -fx-font-size: 16; -fx-font-family: 'Segoe UI Semibold'; -fx-border-color: transparent; -fx-padding: 15 20; -fx-alignment: center-left;" text="Item" />
-            <Button style="-fx-background-color: transparent; -fx-text-fill: #1976D2; -fx-font-size: 16; -fx-font-family: 'Segoe UI Semibold'; -fx-border-color: transparent; -fx-padding: 15 20; -fx-alignment: center-left;" text="Order" />
+            <Button onAction="#btnOrderFormAction" style="-fx-background-color: transparent; -fx-text-fill: #1976D2; -fx-font-size: 16; -fx-font-family: 'Segoe UI Semibold'; -fx-border-color: transparent; -fx-padding: 15 20; -fx-alignment: center-left;" text="Order" />
             <ImageView fitHeight="220.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/icons8-cart-100.png" />

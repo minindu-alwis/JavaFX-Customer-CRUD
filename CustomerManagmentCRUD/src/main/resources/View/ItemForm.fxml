@@ -9,10 +9,9 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Item.ItemFromController">
    <children>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#eb3678" height="72.0" stroke="BLACK" strokeType="INSIDE" width="600.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" height="72.0" stroke="BLACK" strokeType="INSIDE" width="600.0" />
       <TextField fx:id="itemId" layoutX="154.0" layoutY="109.0" promptText="item id" />
       <TextField fx:id="itemName" layoutX="430.0" layoutY="109.0" promptText="item name" />
       <TextField fx:id="itemPrice" layoutX="156.0" layoutY="147.0" promptText="item price" />
