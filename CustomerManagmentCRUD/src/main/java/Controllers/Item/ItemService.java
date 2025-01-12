@@ -1,6 +1,5 @@
 package Controllers.Item;
 
-import Models.Customer;
 import Models.Item;
 
 import java.sql.SQLException;
@@ -10,13 +9,13 @@ public interface ItemService {
 
     List<Item> getAll();
 
-    boolean saveCustomer(Item item) throws SQLException;
+    boolean saveItem(Item item) throws SQLException;
 
     boolean updateItem(Item item) throws SQLException;
 
-    boolean deleteCustomer(String itemid);
+    boolean deleteItem(String itemid);
 
-    Customer searchCustomer(String itemid);
+    Item searchItem(String itemid);
 
 
 }

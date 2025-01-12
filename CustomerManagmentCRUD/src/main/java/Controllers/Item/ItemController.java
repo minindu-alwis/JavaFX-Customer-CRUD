@@ -1,6 +1,5 @@
 package Controllers.Item;
 
-import Controllers.Customer.CustomerController;
 import DB.DBConnection;
 import Models.Customer;
 import Models.Item;
@@ -39,7 +38,7 @@ public class ItemController implements ItemService{
     }
 
     @Override
-    public boolean saveCustomer(Item item) throws SQLException {
+    public boolean saveItem(Item item) throws SQLException {
         Connection connection = DBConnection.getInstance().getConnection();
 
         String sql = "INSERT INTO item (code, description, unitPrice, qtyOnHand) VALUES (?, ?, ?, ?)";
@@ -60,17 +59,38 @@ public class ItemController implements ItemService{
 
     @Override
     public boolean updateItem(Item item) throws SQLException {
-    return true;
+        try {
+            PreparedStatement prepareStm = DBConnection.getInstance().getConnection().prepareStatement("UPDATE item SET description=?,unitPrice=?,qtyOnHand=? WHERE code=?");
+            prepareStm.setString(1, item.getDescription());
+            prepareStm.setDouble(2, item.getUnitPrice());
+            prepareStm.setInt(3, item.getQtyOnHand());
+            prepareStm.setString(4, item.getCode());
+            return prepareStm.executeUpdate() > 0;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
-    public boolean deleteCustomer(String itemid) {
-        return false;
+    public boolean deleteItem(String itemid) {
+        try {
+            return DBConnection.getInstance().getConnection().createStatement().executeUpdate("DELETE FROM item WHERE code='" + itemid + "'") > 0;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
-    public Customer searchCustomer(String itemid) {
-        return null;
+    public Item searchItem(String itemid) {
+        try {
+            ResultSet rst = DBConnection.getInstance().getConnection().createStatement().executeQuery("SELECT description,unitPrice,qtyOnHand FROM item WHERE code='" + itemid + "'");
+            if (rst.next()) {
+                return new Item(null, rst.getString("description"), rst.getDouble("unitPrice"), rst.getInt("qtyOnHand"));
+            }
+            return null;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public String generateId(){
