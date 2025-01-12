@@ -52,14 +52,13 @@ public class CustomerManageMainFormController implements Initializable {
                     )
             );
 
-            // Show success or failure message
             if (isSaved) {
                 new Alert(Alert.AlertType.INFORMATION, "Customer Added Successfully").show();
-                loadTable(); // Refresh table data
-                generateCusId(); // Generate a new customer ID
+                loadTable();
                 cusName.clear();
                 cusAddress.clear();
                 cusSalary.clear();
+                generateCusId();
             } else {
                 new Alert(Alert.AlertType.ERROR, "Customer Addition Failed").show();
             }

@@ -21,17 +21,29 @@ public class CustomerController implements CustomerService{
         return instance == null ? instance = new CustomerController() : instance;
     }
 
-    @Override
     public List<Customer> getAll() {
         List<Customer> customerList = new ArrayList<>();
+        ResultSet rst = null;
         try {
-            ResultSet rst = DBConnection.getInstance().getConnection().createStatement().executeQuery("Select * from Customer");
+            rst = DBConnection.getInstance().getConnection().createStatement().executeQuery("Select * from Customer");
             while (rst.next()) {
-                customerList.add(new Customer(rst.getString(1), rst.getString(2), rst.getString(3), rst.getDouble(4)));
+                String id = rst.getString(1);  // Assuming ID is in the first column
+                String name = rst.getString(2);  // Assuming Name is in the second column
+                String address = rst.getString(3);  // Assuming Address is in the third column
+                double balance = rst.getDouble(4);  // Assuming Balance is in the fourth column
+                customerList.add(new Customer(id, name, address, balance));
             }
         } catch (SQLException e) {
             e.printStackTrace();
             throw new RuntimeException("Error fetching customers from database", e);
+        } finally {
+            if (rst != null) {
+                try {
+                    rst.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
         }
         return customerList;
     }
