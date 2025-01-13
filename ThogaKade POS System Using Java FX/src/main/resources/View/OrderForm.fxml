@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
-
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.order.OrderFormController">
    <children>
@@ -20,5 +20,15 @@
          </font>
       </Label>
       <Label fx:id="nowDateLbl" layoutX="92.0" layoutY="77.0" text="Now Date" />
+      <Label layoutX="44.0" layoutY="109.0" text="Order ID : " />
+      <Label fx:id="orderIdlbl" layoutX="102.0" layoutY="109.0" text="Order ID" />
+      <Label layoutX="44.0" layoutY="142.0" text="Customer ID :" />
+      <Label layoutX="280.0" layoutY="141.0" text="Customer Name : " />
+      <Label fx:id="customerNameLbl" layoutX="387.0" layoutY="138.0" text="Customer Name">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="customerComboBox" layoutX="143.0" layoutY="137.0" onAction="#customerComboxOnAction" prefHeight="18.0" prefWidth="107.0" />
    </children>
 </AnchorPane>
