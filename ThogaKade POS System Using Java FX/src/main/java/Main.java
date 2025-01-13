@@ -10,6 +10,5 @@ public class Main {
         System.out.println(DBConnection.getInstance().getConnection());
         Starter.main(args);
 
-
     }
 }
