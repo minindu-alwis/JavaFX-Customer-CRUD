@@ -105,4 +105,28 @@ public class ItemController implements ItemService{
         }
     }
 
+    public static ArrayList<String> loadAllItemCodes() throws ClassNotFoundException, SQLException{
+
+        ResultSet rst=DBConnection.getInstance().getConnection().createStatement().executeQuery("select code from item");
+        ArrayList<String> itemCodes=new ArrayList<>();
+        while(rst.next()){
+            itemCodes.add(rst.getString(1));
+        }
+        return itemCodes;
+
+    }
+
+    public static Item searchItemforOrderForm(String itemid) {
+        try {
+            ResultSet rst = DBConnection.getInstance().getConnection().createStatement().executeQuery("SELECT description,unitPrice,qtyOnHand FROM item WHERE code='" + itemid + "'");
+            if (rst.next()) {
+                return new Item(null, rst.getString("description"), rst.getDouble("unitPrice"), rst.getInt("qtyOnHand"));
+            }
+            return null;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
 }

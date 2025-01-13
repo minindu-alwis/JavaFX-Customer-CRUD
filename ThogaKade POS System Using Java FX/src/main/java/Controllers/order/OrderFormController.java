@@ -1,6 +1,11 @@
 package Controllers.order;
 
 import Controllers.Customer.CustomerController;
+import Controllers.Item.ItemController;
+import Models.Item;
+import Models.Order;
+import Models.OrderDetail;
+import Models.OrderFormOrder;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -8,17 +13,17 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.util.Duration;
 
+import javax.swing.table.DefaultTableModel;
 import java.net.URL;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.time.LocalTime;
 import java.util.Date;
 import java.util.ResourceBundle;
-import java.util.logging.Logger;
 
 public class OrderFormController implements Initializable {
 
@@ -28,10 +33,27 @@ public class OrderFormController implements Initializable {
     public Label orderIdlbl;
     public Label customerNameLbl;
     public ComboBox customerComboBox;
+    public ComboBox itemComboBox1;
+    public TextField itemDesctxtField;
+    public TextField itemPricetxtField;
+    public TextField itemQtyOnHandtxtField;
+    public TextField itemQtytxtField;
+    public TableView orderTable;
+    public TableColumn orderIdcol;
+    public TableColumn descCol;
+    public TableColumn qtyCol;
+    public TableColumn unitPriceCol;
+    public TableColumn totalCol;
+    public Label TotalTxt;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
+        try {
+            genarateOrderId();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
         loadDateAndTime();
         try {
             loadAllCustomerIds();
@@ -39,6 +61,27 @@ public class OrderFormController implements Initializable {
             throw new RuntimeException(e);
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        }
+
+        try {
+            loadAllItemCodes();
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
+    private void genarateOrderId() throws SQLException {
+        String OrderId=OrderController.getInstance().getLastOrderId();
+        if (OrderId != null) {
+            String strLastDigits = OrderId.substring(1);
+            int lastDigits = Integer.parseInt(strLastDigits);
+            String lastId=String.format("D%03d",lastDigits+1);
+            orderIdlbl.setText(lastId);
+        } else {
+            orderIdlbl.setText("D001");
         }
 
     }
@@ -50,6 +93,16 @@ public class OrderFormController implements Initializable {
             customerIds.add(id);
         }
         customerComboBox.setItems(customerIds);
+    }
+
+    private void loadAllItemCodes() throws ClassNotFoundException, SQLException {
+        ObservableList<String> itemIds = FXCollections.observableArrayList();
+
+        for (String tempId : ItemController.loadAllItemCodes()) {
+            itemIds.add(tempId);
+        }
+        itemComboBox1.setItems(itemIds);
+
     }
 
 
@@ -78,4 +131,80 @@ public class OrderFormController implements Initializable {
             }
     }
 
+    public void itemComboxOnAction(ActionEvent actionEvent) {
+        Item item=ItemController.searchItemforOrderForm((String) itemComboBox1.getSelectionModel().getSelectedItem());
+        itemDesctxtField.setText(item.getDescription());
+        itemPricetxtField.setText(String.valueOf(item.getUnitPrice()));
+        itemQtyOnHandtxtField.setText(String.valueOf(item.getQtyOnHand()));
+
+    }
+
+    private final ObservableList<OrderFormOrder> orderObservableList = FXCollections.observableArrayList();
+
+    public void btnAddOnAction(ActionEvent actionEvent) {
+        orderIdcol.setCellValueFactory(new PropertyValueFactory<>("id"));
+        descCol.setCellValueFactory(new PropertyValueFactory<>("description"));
+        qtyCol.setCellValueFactory(new PropertyValueFactory<>("qty"));
+        unitPriceCol.setCellValueFactory(new PropertyValueFactory<>("unitprice"));
+        totalCol.setCellValueFactory(new PropertyValueFactory<>("total"));
+
+        String qtyText = itemQtytxtField.getText().trim();
+
+        if (qtyText.isEmpty()) {
+            new Alert(Alert.AlertType.INFORMATION, "Please Fill Qty Field").show();
+            return;
+        }
+
+        String itemId = itemComboBox1.getSelectionModel().getSelectedItem().toString();
+        String itemDescription = itemDesctxtField.getText();
+        int qty = Integer.parseInt(itemQtytxtField.getText());
+        double unitPrice = Double.parseDouble(itemPricetxtField.getText());
+        double total = unitPrice * qty;
+
+        boolean itemExists = false;
+
+        for (OrderFormOrder order : orderObservableList) {
+            if (order.getId().equals(itemId)) {
+                order.setQty(order.getQty() + qty);
+                order.setTotal(order.getQty() * order.getUnitprice());
+                itemExists = true;
+                break;
+            }
+        }
+
+        if (!itemExists) {
+            OrderFormOrder newOrder = new OrderFormOrder(itemId, itemDescription, qty, unitPrice, total);
+            orderObservableList.add(newOrder);
+        }
+
+        orderTable.setItems(orderObservableList);
+        orderTable.refresh();
+        updateTotalTxt();
+    }
+
+    private void updateTotalTxt() {
+        double grandTotal = 0;
+
+        for (OrderFormOrder order : orderObservableList) {
+            grandTotal += order.getTotal();
+        }
+
+        TotalTxt.setText(String.format("%.2f", grandTotal));
+    }
+
+
+    public void btnRemoveOnAction(ActionEvent actionEvent) {
+
+        OrderFormOrder selectedOrder = (OrderFormOrder) orderTable.getSelectionModel().getSelectedItem();
+
+        if (selectedOrder != null) {
+            orderObservableList.remove(selectedOrder);
+            orderTable.setItems(orderObservableList);
+            updateTotalTxt();
+        } else {
+            new Alert(Alert.AlertType.WARNING, "Please select an item to remove").show();
+        }
+
+
+    }
 }
