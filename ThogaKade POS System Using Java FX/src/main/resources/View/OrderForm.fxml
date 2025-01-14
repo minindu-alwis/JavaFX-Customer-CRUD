@@ -7,61 +7,60 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="561.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.order.OrderFormController">
+<AnchorPane prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.order.OrderFormController">
    <children>
-      <Label layoutX="243.0" layoutY="23.0" text="Order Form">
-         <font>
-            <Font size="22.0" />
-         </font>
-      </Label>
-      <Label layoutX="47.0" layoutY="77.0" text="Date :" />
-      <Label layoutX="287.0" layoutY="79.0" text="Time : " />
-      <Label fx:id="nowTimeLbl" layoutX="331.0" layoutY="75.0" text="Now Time">
-         <font>
-            <Font size="16.0" />
-         </font>
-      </Label>
-      <Label fx:id="nowDateLbl" layoutX="92.0" layoutY="77.0" text="Now Date" />
-      <Label layoutX="44.0" layoutY="109.0" text="Order ID : " />
-      <Label fx:id="orderIdlbl" layoutX="102.0" layoutY="109.0" text="Order ID" />
-      <Label layoutX="44.0" layoutY="142.0" text="Customer ID :" />
-      <Label layoutX="280.0" layoutY="141.0" text="Customer Name : " />
-      <Label fx:id="customerNameLbl" layoutX="387.0" layoutY="138.0" text="Customer Name">
-         <font>
-            <Font size="16.0" />
-         </font>
-      </Label>
-      <ComboBox fx:id="customerComboBox" layoutX="143.0" layoutY="137.0" onAction="#customerComboxOnAction" prefHeight="18.0" prefWidth="107.0" />
-      <Label layoutX="14.0" layoutY="181.0" text="Item Code" />
-      <ComboBox fx:id="itemComboBox1" layoutX="10.0" layoutY="203.0" onAction="#itemComboxOnAction" prefHeight="28.0" prefWidth="95.0" />
-      <Label layoutX="172.0" layoutY="184.0" text="Description" />
-      <Label layoutX="273.0" layoutY="181.0" />
-      <Label layoutX="282.0" layoutY="186.0" text="Unit Price" />
-      <Label layoutX="396.0" layoutY="186.0" text="Qty On Hand" />
-      <Label layoutX="517.0" layoutY="185.0" text="Qty" />
-      <TextField fx:id="itemDesctxtField" layoutX="123.0" layoutY="203.0" prefHeight="26.0" prefWidth="145.0" />
-      <TextField fx:id="itemPricetxtField" layoutX="276.0" layoutY="203.0" prefHeight="26.0" prefWidth="95.0" />
-      <TextField fx:id="itemQtyOnHandtxtField" layoutX="389.0" layoutY="204.0" prefHeight="26.0" prefWidth="95.0" />
-      <TextField fx:id="itemQtytxtField" layoutX="504.0" layoutY="205.0" prefHeight="26.0" prefWidth="75.0" />
-      <TableView fx:id="orderTable" layoutX="10.0" layoutY="290.0" prefHeight="200.0" prefWidth="579.0">
-        <columns>
-          <TableColumn fx:id="orderIdcol" prefWidth="70.39999103546143" text="Code" />
-          <TableColumn fx:id="descCol" prefWidth="121.5999755859375" text="Description" />
-            <TableColumn fx:id="qtyCol" prefWidth="143.2000274658203" text="Qty" />
-            <TableColumn fx:id="unitPriceCol" prefWidth="122.4000244140625" text="Unit Price" />
-            <TableColumn fx:id="totalCol" prefWidth="124.79998779296875" text="Total" />
-        </columns>
+      <!-- Title -->
+      <Label layoutX="244.0" layoutY="20.0" style="-fx-font-weight: bold; -fx-font-size: 24px; -fx-text-fill: #2C3E50;" text="Order Form" />
+
+      <!-- Date and Time -->
+      <Label layoutX="45.0" layoutY="77.0" style="-fx-font-size: 16px; -fx-text-fill: #7F8C8D;" text="Date:" />
+      <Label fx:id="nowDateLbl" layoutX="124.0" layoutY="77.0" style="-fx-font-size: 16px; -fx-text-fill: #34495E;" text="Now Date" />
+      <Label layoutX="287.0" layoutY="79.0" style="-fx-font-size: 16px; -fx-text-fill: #7F8C8D;" text="Time:" />
+      <Label fx:id="nowTimeLbl" layoutX="340.0" layoutY="79.0" style="-fx-font-size: 16px; -fx-text-fill: #34495E;" text="Now Time" />
+
+      <!-- Order ID -->
+      <Label layoutX="44.0" layoutY="109.0" style="-fx-font-size: 16px; -fx-text-fill: #7F8C8D;" text="Order ID:" />
+      <Label fx:id="orderIdlbl" layoutX="123.0" layoutY="109.0" style="-fx-font-size: 16px; -fx-text-fill: #34495E;" text="Order ID" />
+
+      <!-- Customer Info -->
+      <Label layoutX="44.0" layoutY="142.0" style="-fx-font-size: 16px; -fx-text-fill: #7F8C8D;" text="Customer ID:" />
+      <Label layoutX="280.0" layoutY="141.0" style="-fx-font-size: 16px; -fx-text-fill: #7F8C8D;" text="Customer Name:" />
+      <Label fx:id="customerNameLbl" layoutX="418.0" layoutY="142.0" style="-fx-font-size: 16px; -fx-text-fill: blue;" text="Customer Name" />
+      <ComboBox fx:id="customerComboBox" layoutX="143.0" layoutY="137.0" onAction="#customerComboxOnAction" prefHeight="28.0" prefWidth="107.0" style="-fx-font-size: 14px; -fx-border-radius: 5px;" />
+
+      <!-- Item Info -->
+      <Label layoutX="14.0" layoutY="181.0" style="-fx-font-size: 16px; -fx-text-fill: #7F8C8D;" text="Item Code" />
+      <Label layoutX="158.0" layoutY="184.0" style="-fx-font-size: 16px; -fx-text-fill: #7F8C8D;" text="Description" />
+      <Label layoutX="285.0" layoutY="186.0" style="-fx-font-size: 16px; -fx-text-fill: #7F8C8D;" text="Unit Price" />
+      <Label layoutX="394.0" layoutY="186.0" style="-fx-font-size: 16px; -fx-text-fill: #7F8C8D;" text="Qty On Hand" />
+      <Label layoutX="528.0" layoutY="185.0" style="-fx-font-size: 16px; -fx-text-fill: #7F8C8D;" text="Qty" />
+
+      <!-- Item Input Fields -->
+      <ComboBox fx:id="itemComboBox1" layoutX="10.0" layoutY="217.0" onAction="#itemComboxOnAction" prefHeight="28.0" prefWidth="95.0" style="-fx-font-size: 14px; -fx-border-radius: 5px;" />
+      <TextField fx:id="itemDesctxtField" layoutX="123.0" layoutY="214.0" prefHeight="26.0" prefWidth="145.0" style="-fx-font-size: 14px; -fx-border-radius: 5px;" />
+      <TextField fx:id="itemPricetxtField" layoutX="276.0" layoutY="214.0" prefHeight="26.0" prefWidth="95.0" style="-fx-font-size: 14px; -fx-border-radius: 5px;" />
+      <TextField fx:id="itemQtyOnHandtxtField" layoutX="389.0" layoutY="214.0" prefHeight="26.0" prefWidth="95.0" style="-fx-font-size: 14px; -fx-border-radius: 5px;" />
+      <TextField fx:id="itemQtytxtField" layoutX="504.0" layoutY="215.0" prefHeight="26.0" prefWidth="75.0" style="-fx-font-size: 14px; -fx-border-radius: 5px;" />
+
+      <!-- Order Table -->
+      <TableView fx:id="orderTable" layoutX="10.0" layoutY="312.0" prefHeight="200.0" prefWidth="579.0" style="-fx-background-color: #ECF0F1; -fx-border-color: #BDC3C7; -fx-border-radius: 5px;">
+         <columns>
+            <TableColumn fx:id="orderIdcol" prefWidth="70.0" text="Code" />
+            <TableColumn fx:id="descCol" prefWidth="121.6" text="Description" />
+            <TableColumn fx:id="qtyCol" prefWidth="143.2" text="Qty" />
+            <TableColumn fx:id="unitPriceCol" prefWidth="122.4" text="Unit Price" />
+            <TableColumn fx:id="totalCol" prefWidth="124.8" text="Total" />
+         </columns>
       </TableView>
-      <Button layoutX="224.0" layoutY="241.0" mnemonicParsing="false" onAction="#btnAddOnAction" text="Add" />
-      <Label layoutX="496.0" layoutY="23.0" text="TOTAL" />
-      <Label fx:id="TotalTxt" layoutX="481.0" layoutY="42.0" text="now Total">
-         <font>
-            <Font size="16.0" />
-         </font>
-      </Label>
-      <Button layoutX="297.0" layoutY="241.0" mnemonicParsing="false" onAction="#btnRemoveOnAction" text="Remove" />
-      <Button layoutX="372.0" layoutY="241.0" mnemonicParsing="false" onAction="#btnPlaceOrderOnAction" text="Place Order" />
+
+      <!-- Buttons -->
+      <Button layoutX="153.0" layoutY="258.0" mnemonicParsing="false" onAction="#btnAddOnAction" style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-size: 14px; -fx-padding: 10 20; -fx-background-radius: 5px;" text="Add" />
+      <Button layoutX="262.0" layoutY="258.0" mnemonicParsing="false" onAction="#btnRemoveOnAction" style="-fx-background-color: #f44336; -fx-text-fill: white; -fx-font-size: 14px; -fx-padding: 10 20; -fx-background-radius: 5px;" text="Remove" />
+      <Button layoutX="389.0" layoutY="258.0" mnemonicParsing="false" onAction="#btnPlaceOrderOnAction" style="-fx-background-color: #008CBA; -fx-text-fill: white; -fx-font-size: 14px; -fx-padding: 10 20; -fx-background-radius: 5px;" text="Place Order" />
+
+      <!-- Total -->
+      <Label layoutX="496.0" layoutY="23.0" style="-fx-font-weight: bold; -fx-font-size: 18px; -fx-text-fill: #2C3E50;" text="TOTAL" />
+      <Label fx:id="TotalTxt" layoutX="490.0" layoutY="47.0" style="-fx-font-size: 16px; -fx-text-fill: red;" text="Now Total" />
    </children>
 </AnchorPane>

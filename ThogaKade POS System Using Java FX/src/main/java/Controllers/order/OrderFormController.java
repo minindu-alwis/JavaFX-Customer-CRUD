@@ -77,6 +77,10 @@ public class OrderFormController implements Initializable {
             throw new RuntimeException(e);
         }
 
+        itemDesctxtField.setEditable(false);
+        itemQtyOnHandtxtField.setEditable(false);
+        itemPricetxtField.setEditable(false);
+
     }
 
     private void genarateOrderId() throws SQLException {
