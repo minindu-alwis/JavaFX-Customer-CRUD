@@ -4,10 +4,7 @@ import Controllers.Item.ItemController;
 import DB.DBConnection;
 import Models.Order;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 public class OrderController implements OrderService {
 
@@ -26,7 +23,34 @@ public class OrderController implements OrderService {
     }
 
     @Override
-    public boolean placeOrder(Order order) {
-        return false;
+    public boolean placeOrder(Order order) throws SQLException {
+        Connection connection = DBConnection.getInstance().getConnection();
+
+
+        try {
+            connection.setAutoCommit(false);
+            PreparedStatement stm = connection.prepareStatement("Insert into Orders values(?,?,?)");
+            stm.setObject(1, order.getId());
+            stm.setObject(2, order.getDate());
+            stm.setObject(3, order.getCustomerId());
+            boolean isAddedOrder = stm.executeUpdate() > 0;
+            if (isAddedOrder) {
+                boolean addOrderDetails = OrderDetailController.getInstance().addOrderDetail(order.getOrderDetailList());
+                if (addOrderDetails) {
+                    boolean updateStock = ItemController.getInstance().updateStock(order.getOrderDetailList());
+                    if (updateStock) {
+                        connection.commit();
+                        return true;
+                    }
+                }
+            }
+            connection.rollback();
+            return false;
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        } finally {
+            connection.setAutoCommit(true);
+        }
     }
+
 }

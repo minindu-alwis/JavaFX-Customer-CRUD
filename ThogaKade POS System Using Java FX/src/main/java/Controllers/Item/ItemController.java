@@ -3,6 +3,7 @@ package Controllers.Item;
 import DB.DBConnection;
 import Models.Customer;
 import Models.Item;
+import Models.OrderDetail;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -127,6 +128,23 @@ public class ItemController implements ItemService{
             throw new RuntimeException(e);
         }
     }
+
+    public boolean updateStock(ArrayList <OrderDetail>orderDetails) throws ClassNotFoundException, SQLException{
+        for (OrderDetail orderDetail : orderDetails) {
+            boolean updateStock = updateStock(orderDetail);
+            if(!updateStock){
+                return false;
+            }
+        }
+        return !orderDetails.isEmpty(); //Not empty
+    }
+    public boolean updateStock(OrderDetail orderDetail) throws ClassNotFoundException, SQLException{
+        PreparedStatement stm = DBConnection.getInstance().getConnection().prepareStatement("Update Item set qtyOnHand=qtyOnHand-? where code=?");
+        stm.setObject(1, orderDetail.getQty());
+        stm.setObject(2, orderDetail.getItemCode());
+        return stm.executeUpdate()>0;
+    }
+
 
 
 }

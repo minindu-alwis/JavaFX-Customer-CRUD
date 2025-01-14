@@ -1,6 +1,7 @@
 package Controllers.order;
 
 import Controllers.Customer.CustomerController;
+import Controllers.Dashboard.togakadeDashboardFormController;
 import Controllers.Item.ItemController;
 import Models.Item;
 import Models.Order;
@@ -12,16 +13,20 @@ import javafx.animation.Timeline;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.util.Duration;
 
 import javax.swing.table.DefaultTableModel;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.ResourceBundle;
 
@@ -45,6 +50,7 @@ public class OrderFormController implements Initializable {
     public TableColumn unitPriceCol;
     public TableColumn totalCol;
     public Label TotalTxt;
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -206,5 +212,44 @@ public class OrderFormController implements Initializable {
         }
 
 
+    }
+
+    public void btnPlaceOrderOnAction(ActionEvent actionEvent) throws SQLException, IOException {
+
+
+        String orderId=orderIdlbl.getText();
+        String orderData=nowDateLbl.getText();
+        String customerId=customerComboBox.getSelectionModel().getSelectedItem().toString();
+        ArrayList<OrderDetail> orderDetailList=new ArrayList<>();
+
+        for (OrderFormOrder order : orderObservableList) {
+            String itemCode = order.getId();
+            int orderQty = order.getQty();
+            double unitPrice = order.getUnitprice();
+
+            OrderDetail orderDetail = new OrderDetail(orderId, itemCode, orderQty, unitPrice);
+            orderDetailList.add(orderDetail);
+        }
+
+        Order order=new Order(orderId, orderData, customerId, orderDetailList);
+        boolean isAdded = OrderController.getInstance().placeOrder(order);
+        if(isAdded){
+            new Alert(Alert.AlertType.INFORMATION, "Added Success").show();
+            genarateOrderId();
+            itemComboBox1.getSelectionModel().clearSelection();
+            customerComboBox.getSelectionModel().clearSelection();
+            itemDesctxtField.clear();
+            itemQtyOnHandtxtField.clear();
+            itemPricetxtField.clear();
+            itemQtytxtField.clear();
+            itemQtyOnHandtxtField.clear();
+            orderObservableList.clear();
+            customerNameLbl.setText("");
+            TotalTxt.setText("");
+
+        }else{
+            new Alert(Alert.AlertType.WARNING, "Added Faild").show();
+
+        }
     }
 }

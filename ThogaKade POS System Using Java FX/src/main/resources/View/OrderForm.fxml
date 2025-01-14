@@ -62,5 +62,6 @@
          </font>
       </Label>
       <Button layoutX="297.0" layoutY="241.0" mnemonicParsing="false" onAction="#btnRemoveOnAction" text="Remove" />
+      <Button layoutX="372.0" layoutY="241.0" mnemonicParsing="false" onAction="#btnPlaceOrderOnAction" text="Place Order" />
    </children>
 </AnchorPane>
