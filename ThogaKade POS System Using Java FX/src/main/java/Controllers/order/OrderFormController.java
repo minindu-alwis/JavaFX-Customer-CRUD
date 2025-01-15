@@ -57,25 +57,13 @@ public class OrderFormController implements Initializable {
 
         try {
             genarateOrderId();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-        loadDateAndTime();
-        try {
+            loadDateAndTime();
             loadAllCustomerIds();
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
-        } catch (SQLException e) {
+            loadAllItemCodes();
+        } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
 
-        try {
-            loadAllItemCodes();
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
 
         itemDesctxtField.setEditable(false);
         itemQtyOnHandtxtField.setEditable(false);
@@ -99,7 +87,7 @@ public class OrderFormController implements Initializable {
 
     private void loadAllCustomerIds() throws ClassNotFoundException, SQLException {
         ObservableList<String> customerIds = FXCollections.observableArrayList();
-        for(String id : CustomerController.getAllCustomerIds()) {
+        for(String id : CustomerController.getInstance().getAllCustomerIds()) {
             customerIds.add(id);
         }
         customerComboBox.setItems(customerIds);
@@ -142,11 +130,23 @@ public class OrderFormController implements Initializable {
     }
 
     public void itemComboxOnAction(ActionEvent actionEvent) {
-        Item item=ItemController.searchItemforOrderForm((String) itemComboBox1.getSelectionModel().getSelectedItem());
-        itemDesctxtField.setText(item.getDescription());
-        itemPricetxtField.setText(String.valueOf(item.getUnitPrice()));
-        itemQtyOnHandtxtField.setText(String.valueOf(item.getQtyOnHand()));
+        String selectedItem = (String) itemComboBox1.getSelectionModel().getSelectedItem();
 
+        if (selectedItem == null || selectedItem.isEmpty()) {
+            System.out.println(" ");
+            return;
+        }
+
+        Item item = ItemController.searchItemforOrderForm(selectedItem);
+
+        if (item == null) {
+            System.out.println("No matching item found for the selected item.");
+            return;
+        }
+
+        itemDesctxtField.setText(item.getDescription() != null ? item.getDescription() : "N/A");
+        itemPricetxtField.setText(item.getUnitPrice() != 0 ? String.valueOf(item.getUnitPrice()) : "0.00");
+        itemQtyOnHandtxtField.setText(item.getQtyOnHand() != 0 ? String.valueOf(item.getQtyOnHand()) : "0");
     }
 
     private final ObservableList<OrderFormOrder> orderObservableList = FXCollections.observableArrayList();
@@ -240,20 +240,24 @@ public class OrderFormController implements Initializable {
         if(isAdded){
             new Alert(Alert.AlertType.INFORMATION, "Added Success").show();
             genarateOrderId();
-            itemComboBox1.getSelectionModel().clearSelection();
-            customerComboBox.getSelectionModel().clearSelection();
-            itemDesctxtField.clear();
-            itemQtyOnHandtxtField.clear();
-            itemPricetxtField.clear();
-            itemQtytxtField.clear();
-            itemQtyOnHandtxtField.clear();
-            orderObservableList.clear();
-            customerNameLbl.setText("");
-            TotalTxt.setText("");
+            clear();
 
         }else{
             new Alert(Alert.AlertType.WARNING, "Added Faild").show();
 
         }
+    }
+
+    private void clear(){
+        itemComboBox1.getSelectionModel().clearSelection();
+        customerComboBox.getSelectionModel().clearSelection();
+        itemDesctxtField.clear();
+        itemQtyOnHandtxtField.clear();
+        itemPricetxtField.clear();
+        itemQtytxtField.clear();
+        itemQtyOnHandtxtField.clear();
+        orderObservableList.clear();
+        customerNameLbl.setText("");
+        TotalTxt.setText("");
     }
 }

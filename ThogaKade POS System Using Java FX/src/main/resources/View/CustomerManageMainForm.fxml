@@ -9,7 +9,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="448.0" prefWidth="600.0" style="-fx-background-color: #F5F7FA;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Customer.CustomerManageMainFormController">
+<AnchorPane prefHeight="555.0" prefWidth="600.0" style="-fx-background-color: #F5F7FA;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Customer.CustomerManageMainFormController">
    <children>
       <!-- Header -->
       <Rectangle arcHeight="10.0" arcWidth="10.0" fill="#1976D2" height="72.0" width="600.0" />
@@ -43,7 +43,7 @@
       <Button layoutX="21.0" layoutY="176.0" mnemonicParsing="false" onAction="#btnItemOnAction" style="-fx-background-color: #9B59B6; -fx-text-fill: white; -fx-font-size: 14;" text="Item CRUD" />
 
       <!-- Table View -->
-      <TableView fx:id="tblCustomer" layoutX="21.0" layoutY="215.0" prefHeight="200.0" prefWidth="558.0" style="-fx-background-color: white; -fx-border-color: #DADADA;">
+      <TableView fx:id="tblCustomer" layoutX="26.0" layoutY="221.0" prefHeight="322.0" prefWidth="552.0" style="-fx-background-color: white; -fx-border-color: #DADADA;">
          <columns>
             <TableColumn fx:id="cusIdCol" prefWidth="120.0" text="Customer ID" />
             <TableColumn fx:id="cusNameCol" prefWidth="150.0" text="Customer Name" />

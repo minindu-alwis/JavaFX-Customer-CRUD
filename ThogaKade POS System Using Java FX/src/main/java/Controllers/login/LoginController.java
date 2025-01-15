@@ -38,7 +38,7 @@ public class LoginController implements LoginService{
 
                 return password.equals(decryptpassword);
             } else {
-                return false; // User not found
+                return false;
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);

@@ -25,8 +25,6 @@ public class OrderController implements OrderService {
     @Override
     public boolean placeOrder(Order order) throws SQLException {
         Connection connection = DBConnection.getInstance().getConnection();
-
-
         try {
             connection.setAutoCommit(false);
             PreparedStatement stm = connection.prepareStatement("Insert into Orders values(?,?,?)");

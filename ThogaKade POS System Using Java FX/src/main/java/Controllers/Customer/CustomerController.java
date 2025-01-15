@@ -120,7 +120,7 @@ public class CustomerController implements CustomerService{
     }
 
 
-    public static ArrayList<String> getAllCustomerIds() throws ClassNotFoundException, SQLException{
+    public  ArrayList<String> getAllCustomerIds() throws ClassNotFoundException, SQLException{
         ResultSet rst = DBConnection.getInstance().getConnection().createStatement().executeQuery("Select id From Customer");
         ArrayList<String> cusids=new ArrayList<>();
         while(rst.next()){

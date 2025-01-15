@@ -9,7 +9,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Item.ItemFromController">
+<AnchorPane prefHeight="556.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Item.ItemFromController">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#a4d5ff" height="72.0" stroke="BLACK" strokeType="INSIDE" width="600.0" />
       <TextField fx:id="itemId" layoutX="154.0" layoutY="109.0" promptText="item id" />
@@ -22,7 +22,7 @@
       <Label layoutX="334.0" layoutY="151.0" text="Qty On Hand" />
       <Button layoutX="539.0" layoutY="186.0" mnemonicParsing="false" onAction="#viewItemOnAction" style="-fx-background-color: #95a5a6;" text="View" />
       <Button layoutX="490.0" layoutY="186.0" mnemonicParsing="false" onAction="#addItemOnAction" style="-fx-background-color: #af7ac5;" text="Add" />
-      <TableView fx:id="tblCustomer" layoutX="26.0" layoutY="218.0" prefHeight="174.0" prefWidth="558.0" stylesheets="@../CSS/style.css">
+      <TableView fx:id="tblCustomer" layoutX="26.0" layoutY="218.0" prefHeight="322.0" prefWidth="558.0" stylesheets="@../CSS/style.css">
          <columns>
             <TableColumn fx:id="itemIdCol" prefWidth="127.20001220703125" text="Item ID" />
             <TableColumn fx:id="itemDescCol" prefWidth="152.0" text="Item Description" />
